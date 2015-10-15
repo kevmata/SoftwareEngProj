@@ -14,5 +14,6 @@ public class GameWindow extends JFrame{
 		panel = new GamePanel();
 		
 		window.add(panel);
+                panel.run();
 	}
 }
