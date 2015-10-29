@@ -7,6 +7,7 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
+import Sound.Sound;
 import state_manager.MenuState;
 import state_manager.State;
 import state_manager.StateManager;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     static private boolean running = true;
     static private double fpsCap = 60;
     static private int fps;
+    
 
     public GamePanel() {        
         inputManager = new InputManager();
@@ -55,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
+    	Sound.level.loop();
         int frames = 0;
 
         double unprocessedSeconds = 0;
