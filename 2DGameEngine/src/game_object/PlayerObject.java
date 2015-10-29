@@ -3,6 +3,8 @@ package game_object;
 import game.GameWindow;
 
 import java.awt.Graphics2D;
+
+import Sound.Sound;
 import utilities.Keys;
 
 public class PlayerObject extends GameObject {
@@ -25,7 +27,6 @@ public class PlayerObject extends GameObject {
     
     public PlayerObject(int x, int y, int width, int height) {
         super(x, y, width, height);
-
         image = null;
         
         ableToFire = true;
@@ -105,6 +106,7 @@ public class PlayerObject extends GameObject {
         
         if(health <= 0){
         	isAlive = false;
+        	Sound.death.play();
         }
         
         if(isBlinking){
@@ -123,6 +125,7 @@ public class PlayerObject extends GameObject {
     public ProjectileObject fireProjectile(){
     	if(currentFirePower == NORMAL_FIRE){
     		ableToFire = false;
+    		Sound.gun.play();
     		return new ProjectileObject(x + (width / 2) - 5, y, 10, 10);
     	}else{
     		return new ProjectileObject(x + (width / 2) - 5, y, 10, 10);
