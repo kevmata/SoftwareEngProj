@@ -77,15 +77,15 @@ public class PlayerObject extends GameObject {
     			flashTimer = System.currentTimeMillis();
     		}
     		
-    		if(System.currentTimeMillis() - flashTimer >= 700){
+    		if(System.currentTimeMillis() - flashTimer >= 50){
     			shouldRender = !shouldRender;
+    			flashTimer = System.currentTimeMillis();
     		}
     		
     	}
-    	
     	if(shouldRender){
     		g.drawImage(image, x, y, width, height, null);
-    	}
+    	} 	
     }
 
     public void update() {
@@ -112,7 +112,7 @@ public class PlayerObject extends GameObject {
         		blinkTime = System.currentTimeMillis();
         	}
         	
-        	if(System.currentTimeMillis() - blinkTime >= 3000){
+        	if(System.currentTimeMillis() - blinkTime >= 1500){
         		isBlinking = false;
         		shouldRender = true;
         		blinkTime = -1;
@@ -134,12 +134,12 @@ public class PlayerObject extends GameObject {
 		if(!isBlinking){
 			if(type == GameObject.ENEMY_TYPE){
 				health -= 10;
+				isBlinking = true;
 			}
 			if(type == GameObject.BOSS_TYPE){
-				health -= 10;
+				health -= 30;
+				isBlinking = true;
 			}
-			
-			isBlinking = true;
 		}
 	}
     

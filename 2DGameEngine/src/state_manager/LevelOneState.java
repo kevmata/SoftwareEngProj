@@ -93,24 +93,39 @@ public class LevelOneState extends GameState {
     private void generateEnemy(){
     	Random rand = new Random();
     	
-    	if(bossTimer == -1){
-    		bossTimer = System.currentTimeMillis();
-    	}
+//    	if(bossTimer == -1){
+//    		bossTimer = System.currentTimeMillis();
+//    	}
+//    	
+//    	if(System.currentTimeMillis() - bossTimer <= 10000){
+//    		if(rand.nextInt(50) == 0){
+//        		EnemyObject e = new EnemyObject(rand.nextInt(GameWindow.WIDTH), 0, 50, 50);
+//        		e.setImage(enemyImage);
+//        		objectList.add(e);
+//        	}
+//    	}else if(!bossActive){
+//    		BossObject b = new BossObject(250, 250, 100, 100);
+//    		b.setImage(bossImage);
+//    		objectList.add(b);
+//    		
+//    		bossActive = true;
+//    	}
     	
-    	if(System.currentTimeMillis() - bossTimer <= 10000){
+    	if(score >= 15){
+    		if(!bossActive){
+	    		BossObject b = new BossObject(250, 250, 100, 100);
+	    		b.setImage(bossImage);
+	    		objectList.add(b);
+    		
+	    		bossActive = true;
+    		}
+    	}else{
     		if(rand.nextInt(50) == 0){
         		EnemyObject e = new EnemyObject(rand.nextInt(GameWindow.WIDTH), 0, 50, 50);
         		e.setImage(enemyImage);
         		objectList.add(e);
         	}
-    	}else if(!bossActive){
-    		BossObject b = new BossObject(250, 250, 100, 100);
-    		b.setImage(bossImage);
-    		objectList.add(b);
-    		
-    		bossActive = true;
     	}
-    	
     	
     }
     
