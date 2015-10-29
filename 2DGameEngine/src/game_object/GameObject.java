@@ -5,10 +5,21 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class GameObject {
+	public static final int PLAYER_TYPE = 0;
+	public static final int PROJECTILE_TYPE = 1;
+	public static final int ENEMY_TYPE = 2;
+	public static final int BOSS_TYPE = 3;
+	
 	protected int x;
 	protected int y;
 	protected int width;
 	protected int height;
+	protected int speed;
+	protected int health;
+    protected int maxHealth;
+	protected int type;
+	
+	protected boolean isAlive;
 	
 	protected BufferedImage image;
 	
@@ -20,6 +31,8 @@ public class GameObject {
 		this.width = width;
 		this.height = height;
 		
+		isAlive = true;
+		
 		collisionBox = new Rectangle(x, y, width, height);
 	}
 	
@@ -29,6 +42,14 @@ public class GameObject {
 	
 	public void update(){
 		collisionBox.setBounds(x, y, width, height);
+	}
+	
+	public void collisionDetected(int type){
+		
+	}
+	
+	public void setKeyboardInput(boolean[] keys){
+		
 	}
 	
 	public void setImage(BufferedImage i){
@@ -73,5 +94,33 @@ public class GameObject {
 
 	public void setCollisionBox(Rectangle collisionBox) {
 		this.collisionBox = collisionBox;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
+	public BufferedImage getImage() {
+		return image;
 	}
 }

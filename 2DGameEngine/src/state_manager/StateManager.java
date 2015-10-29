@@ -18,23 +18,11 @@ public class StateManager implements State {
         return this.currentState;
     }
 
-    public void update() {
-        this.currentState.update();
+    public void update(boolean[] keys) {
+        this.currentState.update(keys);
     }
 
     public void render(Graphics2D g) {
         this.currentState.render(g);
-    }
-
-    public void keyPressed(int key) {
-        this.currentState.keyPressed(key);
-    }
-
-    public void keyReleased(int key) {
-        this.currentState.keyReleased(key);
-    }
-
-    public void keyTyped(int key) {
-        this.currentState.keyTyped(key);
     }
 }
