@@ -1,7 +1,6 @@
 package game_object;
 
 import java.awt.Graphics2D;
-
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -19,10 +18,8 @@ public class GameObject {
 	protected int health;
     protected int maxHealth;
 	protected int type;
-	protected float opacity;
 	
 	protected boolean isAlive;
-	protected boolean isOnScreen;
 	
 	protected BufferedImage image;
 	
@@ -34,13 +31,9 @@ public class GameObject {
 		this.width = width;
 		this.height = height;
 		
-		
 		isAlive = true;
-		isOnScreen = true;
 		
 		collisionBox = new Rectangle(x, y, width, height);
-		
-		
 	}
 	
 	public void render(Graphics2D g){
@@ -130,14 +123,4 @@ public class GameObject {
 	public BufferedImage getImage() {
 		return image;
 	}
-	
-	public boolean isOnScreen() {
-		return isAlive;
-	}
-
-	public void setisOnScreen(boolean isOnScreen) {
-		this.isOnScreen = isOnScreen;
-	}
-
-
 }

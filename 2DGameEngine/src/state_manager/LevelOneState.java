@@ -37,7 +37,6 @@ public class LevelOneState extends GameState {
     private BufferedImage enemyImage;
     private BufferedImage bossImage;
 
-
     public LevelOneState() {
     	score = 0;
     	
@@ -52,8 +51,6 @@ public class LevelOneState extends GameState {
         bossImage = FileLoader.loadImage("/resources/boss_1.png");
         
         objectList = new ArrayList<GameObject>();
-        
-        
         
         hud = new Hud();
         
@@ -136,7 +133,7 @@ public class LevelOneState extends GameState {
     	for (int i = 0; i < objectList.size(); i++) {
         	GameObject go = objectList.get(i);
            	
-        	if(!go.isAlive() && !go.isOnScreen()){
+        	if(!go.isAlive()){
         		objectList.remove(i);
         		i--;
         		
@@ -150,9 +147,7 @@ public class LevelOneState extends GameState {
         		}else if(type == GameObject.BOSS_TYPE){
         			GamePanel.setState(new LevelUpState(score));
         		}
-
         	}
-        	
         }
     }
     
@@ -162,7 +157,7 @@ public class LevelOneState extends GameState {
         for (int i = 0; i < objectList.size(); i++) {
         	GameObject go = objectList.get(i);
         	
-        	if(go.isAlive() && go.isOnScreen()){
+        	if(go.isAlive()){
         		go.render(g);
         	}
         }
