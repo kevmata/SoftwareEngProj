@@ -128,6 +128,7 @@ public class PlayerObject extends GameObject {
     		Sound.gun.play();
     		return new ProjectileObject(x + (width / 2) - 5, y, 10, 10);
     	}else{
+    		
     		return new ProjectileObject(x + (width / 2) - 5, y, 10, 10);
     	}
     		

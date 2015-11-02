@@ -1,5 +1,6 @@
 package game_object;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 
 public class BossObject extends GameObject{
@@ -10,12 +11,16 @@ public class BossObject extends GameObject{
 	private double nextX;
 	private double nextY;
 	
+	private float opacity;
+	
 	public BossObject(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		type = GameObject.BOSS_TYPE;
 		health = 300;
 		iterator = 0;
-		radius = 120;
+		radius = 120;		
+		opacity = 1.0f;
+		
 		
 		nextX = 0;
 		nextY = 0;
@@ -40,13 +45,19 @@ public class BossObject extends GameObject{
 		}
 	}
 	
+
 	public void render(Graphics2D g){
-		g.drawImage(image, x, y, width, height, null);
+		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+		g.drawImage(image, x, y, width, height, null);	
+		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+		
+				
 	}
 	
 	public void collisionDetected(int type){
 		if(type == GameObject.PROJECTILE_TYPE){
 			health -= 10;
+			opacity -=0.02f;
 		}
 	}
 }
