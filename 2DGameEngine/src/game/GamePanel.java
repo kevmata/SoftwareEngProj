@@ -4,43 +4,39 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Sound.Sound;
 import state_manager.MenuState;
 import state_manager.State;
 import state_manager.StateManager;
+import utilities.InputManager;
 
-public class GamePanel extends JPanel implements Runnable, KeyListener {
+public class GamePanel extends JPanel implements Runnable {
 
-	private Font fpsFont;
+    private Font fpsFont;
 	
+    static private InputManager inputManager;
     static private StateManager runningState;
 
     static private boolean running = true;
     static private double fpsCap = 60;
     static private int fps;
+    
 
-    public GamePanel() {
-        addKeyListener(this);
+    public GamePanel() {        
+        inputManager = new InputManager();
+        
+        addKeyListener(inputManager);
+        addFocusListener(inputManager);
+        addMouseListener(inputManager);
+        addMouseMotionListener(inputManager);
+        
         runningState = new StateManager();
         runningState.setState(new MenuState());
         
-        fpsFont = new Font("Arial", Font.ITALIC, 20);
-    }
-
-    public void keyTyped(KeyEvent key) {
-        runningState.keyTyped(key.getKeyCode());
-    }
-
-    public void keyPressed(KeyEvent key) {
-        runningState.keyPressed(key.getKeyCode());
-    }
-
-    public void keyReleased(KeyEvent key) {
-        runningState.keyReleased(key.getKeyCode());
+        fpsFont = new Font("Arial", Font.PLAIN, 20);
     }
 
     public void paint(Graphics g) {
@@ -55,13 +51,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         
         runningState.render(g2);
 
-        g2.setColor(Color.BLACK);
-        
+        g2.setColor(Color.WHITE);
         g2.setFont(fpsFont);
         g2.drawString("FPS: " + fps, 10, 15);
     }
 
     public void run() {
+    	Sound.level.loop();
         int frames = 0;
 
         double unprocessedSeconds = 0;
@@ -92,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
                 tickCount++;
                 if (tickCount % fpsCap == 0) {
-                    System.out.println(frames + " fps");
+                    //System.out.println(frames + " fps");
                     fps = frames;
                     lastTime += 1000;
                     frames = 0;
@@ -113,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void tick() {
-        runningState.update();
+        runningState.update(inputManager.keys);
     }
 
     public static State getState() {
