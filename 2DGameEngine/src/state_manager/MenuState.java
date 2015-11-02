@@ -16,6 +16,12 @@ public class MenuState extends GameState {
 	public static final int START_OPTION = 0;
 	public static final int EXIT_OPTION = 1;
 	
+	private final int startPlaceHeight = 100;
+	private final int startPlaceWidth =  220;
+	
+	private final int exitPlaceHeight = 130;
+	private final int exitPlaceWidth = 220;
+	
 	private boolean keyLock;
 	
 	private Font font;
@@ -24,14 +30,14 @@ public class MenuState extends GameState {
 	
     public MenuState() {
     	keyLock = false;
-        backgroundImage = FileLoader.loadImage("/resources/dwarf.png");
+        backgroundImage = FileLoader.loadImage("/resources/bg.png");
         font = new Font("Times New Roman", Font.BOLD, 20);
         
         menuManager = new MenuManager();
         menuManager.setColor(new Color(255, 0, 255));
         menuManager.setFont(font);
-        menuManager.addOption("START", 220, 300);
-        menuManager.addOption("EXIT", 220, 330);
+        menuManager.addOption("START", startPlaceWidth, startPlaceHeight);
+        menuManager.addOption("EXIT", exitPlaceWidth, exitPlaceHeight);
     }
 
     public void update(boolean[] keys) {

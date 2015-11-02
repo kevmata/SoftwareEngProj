@@ -16,6 +16,7 @@ public class Hud {
 	
 	public Hud(){
 		font = new Font("Arial", Font.PLAIN, 20);
+		
 	}
 	
 	public void render(Graphics2D g){
@@ -29,12 +30,14 @@ public class Hud {
 		
 		g.setColor(Color.WHITE);
 		g.drawRect(330, 10, 150, 30);
+		
 	}
 	
 	public void update(int s, int pch, int pmh){
 		score = s;
 		playerCurrentHealth = pch;
 		playerMaxHealth = pmh;
+		
 		
 		ratio = (float)playerCurrentHealth / (float)playerMaxHealth;
 	}

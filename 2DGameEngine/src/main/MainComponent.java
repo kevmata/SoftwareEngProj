@@ -4,6 +4,6 @@ import game.GameWindow;
 
 public class MainComponent {
 	public static void main(String[] args) {
-		new GameWindow("Game");
+		new GameWindow("Dwarves In Space");
 	}
 }
